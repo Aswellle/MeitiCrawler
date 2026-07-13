@@ -25,5 +25,13 @@
     "error": "[错误] 数据解析失败",
     "searchPlaceholder": "搜索数据...",
     "showing": "显示 {{filtered}} / {{total}} 条记录"
+  },
+  "stats": {
+    "title": "数据统计概览",
+    "totalFiles": "文件总数",
+    "totalSize": "总大小",
+    "byType": "文件类型",
+    "byPlatform": "覆盖平台",
+    "platformBreakdown": "各平台数据分布"
   }
 }

@@ -25,9 +25,12 @@ export function EnvironmentCheck({ onCheckComplete }: EnvironmentCheckProps) {
   const [status, setStatus] = useState<'checking' | 'success' | 'error'>('checking')
   const [result, setResult] = useState<EnvCheckResult | null>(null)
   const [showDetails, setShowDetails] = useState(false)
+  const [retryCount, setRetryCount] = useState(0)
 
-  const checkEnvironment = async () => {
+  const checkEnvironment = async (attempt = 1) => {
+    const MAX_RETRIES = 3
     setStatus('checking')
+    setRetryCount(attempt - 1)
     setResult(null)
     try {
       const response = await envApi.check()
@@ -39,15 +42,27 @@ export function EnvironmentCheck({ onCheckComplete }: EnvironmentCheckProps) {
         // 成功后延迟关闭
         setTimeout(() => onCheckComplete(true), 1500)
       } else {
-        setStatus('error')
+        if (attempt < MAX_RETRIES) {
+          const delay = attempt * 2000
+          setTimeout(() => checkEnvironment(attempt + 1), delay)
+          setStatus('checking')
+        } else {
+          setStatus('error')
+        }
       }
     } catch (error) {
-      setResult({
-        success: false,
-        message: t('defaultError'),
-        error: t('defaultErrorHint')
-      })
-      setStatus('error')
+      if (attempt < MAX_RETRIES) {
+        const delay = attempt * 2000
+        setTimeout(() => checkEnvironment(attempt + 1), delay)
+        setStatus('checking')
+      } else {
+        setResult({
+          success: false,
+          message: t('defaultError'),
+          error: t('defaultErrorHint')
+        })
+        setStatus('error')
+      }
     }
   }
 
@@ -89,6 +104,11 @@ export function EnvironmentCheck({ onCheckComplete }: EnvironmentCheckProps) {
                 <Loader2 className="w-5 h-5 text-cyber-neon-cyan animate-spin" />
                 <span className="text-cyber-text-primary font-mono text-sm">
                   {t('scanning')}
+                  {retryCount > 0 && (
+                    <span className="text-cyber-text-muted ml-2">
+                      ({t('retrying', { attempt: retryCount, max: 3 })})
+                    </span>
+                  )}
                 </span>
               </>
             )}

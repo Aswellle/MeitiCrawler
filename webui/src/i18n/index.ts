@@ -44,6 +44,7 @@ i18n
     resources,
     fallbackLng: 'zh-CN',
     defaultNS: 'common',
+    supportedLngs: ['zh-CN', 'en-US'],
     interpolation: {
       escapeValue: false,
     },
@@ -53,5 +54,18 @@ i18n
       lookupLocalStorage: 'mediacrawler_language',
     },
   })
+
+// 语言检测后处理：非英文一律显示中文
+i18n.on('languageChanged', (lng) => {
+  if (lng && !lng.startsWith('en') && i18n.language !== 'zh-CN') {
+    i18n.changeLanguage('zh-CN')
+  }
+})
+
+// 初始化时强制：除非用户明确存了 en，否则用中文
+const savedLang = localStorage.getItem('mediacrawler_language')
+if (!savedLang || !savedLang.startsWith('en')) {
+  i18n.changeLanguage('zh-CN')
+}
 
 export default i18n

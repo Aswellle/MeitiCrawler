@@ -184,3 +184,10 @@ debug_tools
 
 database/*.db
 .omx/
+
+# Claude Code local settings
+.claude/
+.omc/
+
+# Debug / temp
+_debug_path.py

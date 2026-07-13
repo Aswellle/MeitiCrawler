@@ -59,6 +59,9 @@ const defaultConfig: CrawlerConfig = {
   save_option: 'json',
   cookies: '',
   headless: false,
+  max_notes_count: null,
+  max_comments_count: null,
+  cdp_auto_launch: false,
 }
 
 export const useCrawlerStore = create<CrawlerState>((set, get) => ({

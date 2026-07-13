@@ -10,12 +10,5 @@
   "license": "View Full License",
   "github": "Visit GitHub Repository",
   "confirm": "I understand and agree to the above terms",
-  "decline": "Disagree, Exit",
-  "author": {
-    "name": "Relakkes (阿江)",
-    "tagline": "40K+ Star Open Source Author",
-    "description": "Author of MediaCrawler (40K stars), focused on crawler tech and AI Agent knowledge sharing",
-    "support": "If you find this project helpful, please follow the author on social media",
-    "slogan": "Open source is hard, please star ⭐"
-  }
+  "decline": "Disagree, Exit"
 }

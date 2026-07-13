@@ -100,7 +100,7 @@ class CrawlerManager:
             self._logs = []
             self._log_id = 0
 
-            # Clear pending queue (don't replace object to avoid WebSocket broadcast coroutine holding old queue reference)
+            # Clear pending queue
             if self._log_queue is None:
                 self._log_queue = asyncio.Queue()
             else:
@@ -113,12 +113,17 @@ class CrawlerManager:
             # Build command line arguments
             cmd = self._build_command(config)
 
+            # Build environment: auto-launch Chrome if requested
+            env = {**os.environ, "PYTHONUNBUFFERED": "1"}
+            if config.cdp_auto_launch:
+                env["MEDIACRAWLER_CDP_CONNECT_EXISTING"] = "False"
+
             # Log start information
             entry = self._create_log_entry(f"Starting crawler: {' '.join(cmd)}", "info")
             await self._push_log(entry)
 
             try:
-                # Start subprocess
+                # Start subprocess with custom env
                 self.process = subprocess.Popen(
                     cmd,
                     stdout=subprocess.PIPE,
@@ -127,7 +132,7 @@ class CrawlerManager:
                     encoding='utf-8',
                     bufsize=1,
                     cwd=str(self._project_root),
-                    env={**os.environ, "PYTHONUNBUFFERED": "1"}
+                    env=env,
                 )
 
                 self.status = "running"
@@ -204,7 +209,7 @@ class CrawlerManager:
 
     def _build_command(self, config: CrawlerStartRequest) -> list:
         """Build main.py command line arguments"""
-        cmd = ["uv", "run", "python", "main.py"]
+        cmd = ["uv", "run", "main.py"]
 
         cmd.extend(["--platform", config.platform.value])
         cmd.extend(["--lt", config.login_type.value])
@@ -239,7 +244,6 @@ class CrawlerManager:
         return cmd
 
     async def _read_output(self):
-        """Asynchronously read process output"""
         loop = asyncio.get_event_loop()
 
         try:

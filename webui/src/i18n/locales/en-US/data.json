@@ -25,5 +25,13 @@
     "error": "[ERROR] Failed to decode payload",
     "searchPlaceholder": "Search in data...",
     "showing": "Showing {{filtered}} of {{total}} records"
+  },
+  "stats": {
+    "title": "Data Statistics",
+    "totalFiles": "Total Files",
+    "totalSize": "Total Size",
+    "byType": "By Type",
+    "byPlatform": "Platforms",
+    "platformBreakdown": "Platform Distribution"
   }
 }

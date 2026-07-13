@@ -76,6 +76,7 @@ class CrawlerStartRequest(BaseModel):
     headless: bool = False
     max_notes_count: Optional[int] = Field(default=None, ge=1, le=MAX_API_LIMIT_COUNT)
     max_comments_count: Optional[int] = Field(default=None, ge=1, le=MAX_API_LIMIT_COUNT)
+    cdp_auto_launch: bool = False  # Auto-launch Chrome instead of connecting to existing
 
 
 class CrawlerStatusResponse(BaseModel):

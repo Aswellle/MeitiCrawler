@@ -21,6 +21,17 @@
   },
   "unit": {
     "entries": "条记录",
-    "records": "条"
-  }
+    "records": "条",
+    "files": "个文件"
+  },
+  "tab": {
+    "console": "终端",
+    "running": "运行中",
+    "data": "数据",
+    "stats": "统计",
+    "openHint": "点击打开底部面板"
+  },
+  "crawlCompleted": "爬虫任务已完成",
+  "crawlError": "爬虫任务出错",
+  "crawlStopped": "爬虫任务已停止"
 }

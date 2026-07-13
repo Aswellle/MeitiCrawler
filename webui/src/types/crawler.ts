@@ -11,6 +11,9 @@ export interface CrawlerConfig {
   save_option: string
   cookies: string
   headless: boolean
+  max_notes_count: number | null
+  max_comments_count: number | null
+  cdp_auto_launch: boolean
 }
 
 export interface CrawlerStatus {

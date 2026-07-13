@@ -56,16 +56,65 @@
     "commentExtraction": "Comment Extraction",
     "subComments": "Sub-comments",
     "headlessMode": "HEADLESS_MODE",
-    "headlessModeHint": "Run browser without GUI"
+    "headlessModeHint": "Run browser without GUI",
+    "maxNotes": "MAX_NOTES",
+    "maxNotesPlaceholder": "Default 15",
+    "maxComments": "MAX_COMMENTS",
+    "maxCommentsPlaceholder": "Default 10"
   },
   "button": {
     "initiateScan": "INITIATE SCAN",
     "initiating": "INITIATING...",
     "terminate": "TERMINATE",
-    "stopping": "STOPPING..."
+    "stopping": "STOPPING...",
+    "reset": "RESET"
+  },
+  "presets": {
+    "label": "PRESETS",
+    "saveConfig": "Save Current Config",
+    "namePlaceholder": "Config name...",
+    "copy": "Copy Config",
+    "export": "Export File",
+    "savedList": "Saved Configs",
+    "noSaved": "No saved configs yet"
   },
   "warning": {
     "cookieSlider": "[Note] Cookie login is not recommended for Xiaohongshu and Douyin due to slider captcha",
     "xhsToken": "[Important] Xiaohongshu URLs must contain xsec_token parameter, please copy the full URL from browser"
+  },
+  "prerequisites": {
+    "title": "Prerequisites",
+    "cdpRequired": "This project uses CDP mode to connect to your local Chrome browser. Please ensure:",
+    "step1": "Install latest Chrome (version ≥ 144)",
+    "step2": "Navigate to chrome://inspect/#remote-debugging in Chrome",
+    "step3": "Enable 'Allow remote debugging' and ensure port 9222 is open",
+    "step4": "Click 'Accept' in the Chrome confirmation dialog within 60 seconds of starting",
+    "note": "For non-CDP mode, set ENABLE_CDP_MODE = False in config/base_config.py",
+    "autoLaunch": "Auto-launch Chrome (recommended)",
+    "autoLaunchHint": "When enabled, the system will automatically open Chrome with remote debugging enabled"
+  },
+  "loginGuide": {
+    "qrcode": {
+      "title": "QR Code Login",
+      "step1": "After clicking 'Start', Chrome browser will open automatically",
+      "step2": "Find the QR code on the login page and scan it with your phone app",
+      "step3": "Login session is saved automatically for future crawls"
+    },
+    "phone": {
+      "title": "Phone Login",
+      "step1": "After clicking 'Start', Chrome browser will open automatically",
+      "step2": "Select phone login, enter your number and verification code",
+      "step3": "Complete login and the session will be saved"
+    },
+    "cookie": {
+      "title": "Cookie Login",
+      "commonStep1": "Log in to the target platform in your browser",
+      "xhsStep2": "Press F12 → Network → Copy Cookie header from any request",
+      "dyStep2": "Press F12 → Application → Cookies → Copy all cookie strings",
+      "wbStep2": "Press F12 → Network → Copy Cookie value from request headers",
+      "defaultStep2": "Press F12 → Network → Copy Cookie value from request headers",
+      "commonStep3": "Paste the cookie string into the text area below",
+      "commonStep4": "Note: cookies expire, you'll need to refresh them periodically"
+    }
   }
 }

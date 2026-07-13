@@ -183,6 +183,25 @@
   background: rgba(0, 255, 65, 0.6);
 }
 
+/* Thin scrollbar for panels */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgb(var(--cyber-neon-cyan) / 0.25);
+  border-radius: 2px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--cyber-neon-cyan) / 0.5);
+}
+
 /* ============================
    Cyberpunk Grid Background
    ============================ */

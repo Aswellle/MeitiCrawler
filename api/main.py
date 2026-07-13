@@ -52,8 +52,12 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",  # Vite dev server
         "http://localhost:3000",  # Backup port
+        "http://localhost:8080",  # API production port
+        "http://localhost:8081",  # Alternative API port
         "http://127.0.0.1:5173",
         "http://127.0.0.1:3000",
+        "http://127.0.0.1:8080",
+        "http://127.0.0.1:8081",
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -169,6 +173,7 @@ async def get_config_options():
     return {
         "login_types": [
             {"value": "qrcode", "label": "QR Code Login"},
+            {"value": "phone", "label": "Phone Login"},
             {"value": "cookie", "label": "Cookie Login"},
         ],
         "crawler_types": [

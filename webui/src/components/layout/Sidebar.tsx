@@ -1,8 +1,7 @@
-import { Bug, Wifi, AlertTriangle, Github } from 'lucide-react'
+import { Bug, Wifi, AlertTriangle } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Badge } from '@/components/ui/badge'
 import { useCrawlerStore } from '@/store/crawlerStore'
-import { useCrawlerStatus } from '@/hooks/useCrawler'
 import { LanguageSwitch } from './LanguageSwitch'
 import { ThemeToggle } from './ThemeToggle'
 
@@ -15,29 +14,17 @@ export function Sidebar({ onShowDisclaimer }: SidebarProps) {
   const { t: tLicense } = useTranslation('license')
   const status = useCrawlerStore((state) => state.status)
 
-  // Poll status
-  useCrawlerStatus()
-
   const isRunning = status === 'running'
 
   return (
     <header className="h-14 flex-shrink-0 glass-panel border-b border-cyber-border-subtle relative z-10">
       <div className="h-full px-4 flex items-center justify-between">
-        {/* Left: Logo and GitHub Star */}
+        {/* Left: Logo */}
         <div className="flex items-center gap-3">
           <Bug className="w-5 h-5 text-cyber-neon-cyan" />
           <span className="font-mono font-bold text-cyber-text-primary tracking-wider text-sm">
             MediaCrawler
           </span>
-          <a
-            href="https://github.com/NanmiCoder/MediaCrawler"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-2 py-1 rounded-md border border-cyber-border-subtle hover:border-cyber-neon-cyan hover:shadow-glow-cyan-sm transition-all bg-cyber-bg-tertiary"
-          >
-            <Github className="w-4 h-4 text-cyber-text-secondary" />
-            <span className="text-xs font-mono text-cyber-text-secondary">Star</span>
-          </a>
           {isRunning && (
             <Badge variant="running" className="text-[10px]">
               {t('status.active')}
@@ -65,7 +52,7 @@ export function Sidebar({ onShowDisclaimer }: SidebarProps) {
         </button>
 
         {/* Right: Actions and Status */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           {/* Theme Toggle */}
           <ThemeToggle />
           {/* Language Switch */}

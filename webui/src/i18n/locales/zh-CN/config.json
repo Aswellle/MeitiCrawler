@@ -56,16 +56,65 @@
     "commentExtraction": "评论抓取",
     "subComments": "子评论",
     "headlessMode": "无头模式",
-    "headlessModeHint": "无 GUI 运行浏览器"
+    "headlessModeHint": "无 GUI 运行浏览器",
+    "maxNotes": "最大笔记数",
+    "maxNotesPlaceholder": "默认 15",
+    "maxComments": "最大评论数",
+    "maxCommentsPlaceholder": "默认 10"
   },
   "button": {
     "initiateScan": "开始爬虫",
     "initiating": "启动中...",
     "terminate": "终止",
-    "stopping": "停止中..."
+    "stopping": "停止中...",
+    "reset": "重置"
+  },
+  "presets": {
+    "label": "配置",
+    "saveConfig": "保存当前配置",
+    "namePlaceholder": "配置名称...",
+    "copy": "复制配置",
+    "export": "导出文件",
+    "savedList": "已保存的配置",
+    "noSaved": "暂无已保存的配置"
   },
   "warning": {
     "cookieSlider": "[提示] 小红书和抖音平台不建议使用 Cookie 登录，因为可能会触发滑块验证",
     "xhsToken": "[重要] 小红书 URL 必须包含 xsec_token 参数，请从浏览器复制完整 URL"
+  },
+  "prerequisites": {
+    "title": "运行前置条件",
+    "cdpRequired": "本项目使用 CDP 模式连接本地 Chrome 浏览器。请确保：",
+    "step1": "安装最新版 Chrome 浏览器（版本 ≥ 144）",
+    "step2": "在 Chrome 地址栏输入 chrome://inspect/#remote-debugging",
+    "step3": "勾选「Allow remote debugging」确保端口 9222 已开启",
+    "step4": "点击「开始爬虫」后 60 秒内在弹出的 Chrome 窗口中点击「接受」",
+    "note": "首次运行时会弹出确认对话框，请在 60 秒内点击接受。如不想使用 CDP 模式，可在 config/base_config.py 中设置 ENABLE_CDP_MODE = False",
+    "autoLaunch": "自动启动 Chrome（推荐）",
+    "autoLaunchHint": "勾选后系统将自动打开 Chrome 浏览器并开启远程调试，无需手动配置"
+  },
+  "loginGuide": {
+    "qrcode": {
+      "title": "📱 扫码登录流程",
+      "step1": "点击「开始爬虫」后，系统会自动打开 Chrome 浏览器",
+      "step2": "在浏览器页面中找到登录二维码，使用手机 App 扫码",
+      "step3": "扫码成功后登录态将自动保存，后续爬取无需重复扫码"
+    },
+    "phone": {
+      "title": "📞 手机号登录流程",
+      "step1": "点击「开始爬虫」后，系统会自动打开 Chrome 浏览器",
+      "step2": "在登录页面选择手机号登录，输入手机号并获取验证码",
+      "step3": "输入验证码完成登录，登录态将自动保存"
+    },
+    "cookie": {
+      "title": "🍪 Cookie 登录说明",
+      "commonStep1": "在浏览器中登录目标平台账号",
+      "xhsStep2": "按 F12 打开开发者工具 → Network → 复制任意请求的 Cookie 请求头",
+      "dyStep2": "按 F12 打开开发者工具 → Application → Cookies → 复制全部 Cookie 字符串",
+      "wbStep2": "按 F12 打开开发者工具 → Network → 复制请求中的 Cookie 值",
+      "defaultStep2": "按 F12 打开开发者工具 → Network → 复制请求中的 Cookie 值",
+      "commonStep3": "将复制的 Cookie 字符串粘贴到下方文本框中",
+      "commonStep4": "注意 Cookie 有过期时间，过期后需要重新获取"
+    }
   }
 }

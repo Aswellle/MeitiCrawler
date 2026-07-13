@@ -21,6 +21,17 @@
   },
   "unit": {
     "entries": "entries",
-    "records": "records"
-  }
+    "records": "records",
+    "files": "files"
+  },
+  "tab": {
+    "console": "Console",
+    "running": "Running",
+    "data": "Data",
+    "stats": "Stats",
+    "openHint": "Click to open bottom panel"
+  },
+  "crawlCompleted": "Crawl completed",
+  "crawlError": "Crawl error",
+  "crawlStopped": "Crawl stopped"
 }
