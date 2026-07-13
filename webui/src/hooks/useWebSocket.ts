@@ -31,8 +31,7 @@ export function useLogWebSocket() {
       }
 
       const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
-      // In dev, connect via Vite proxy. In production (GitHub Pages), connect directly to backend.
-      const host = import.meta.env.DEV ? window.location.host : 'localhost:8083'
+      const host = window.location.host
       const wsUrl = `${protocol}//${host}/api/ws/logs`
 
       const ws = new WebSocket(wsUrl)

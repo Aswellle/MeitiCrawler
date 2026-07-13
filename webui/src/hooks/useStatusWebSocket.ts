@@ -33,7 +33,7 @@ export function useStatusWebSocket() {
       }
 
       const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
-      const host = import.meta.env.DEV ? window.location.host : 'localhost:8083'
+      const host = window.location.host
       const wsUrl = `${protocol}//${host}/api/ws/status`
 
       const ws = new WebSocket(wsUrl)
