@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-// Cloudflare Tunnel HTTPS backend (runs localhost:8083)
-const CF_TUNNEL = 'https://kinase-makers-question-respectively.trycloudflare.com'
+// ngrok HTTPS tunnel (runs localhost:8083)
+const NGROK_URL = 'https://insectlike-aleida-unctuousnessly.ngrok-free.dev'
 
 const api = axios.create({
-  baseURL: import.meta.env.DEV ? '/api' : `${CF_TUNNEL}/api`,
+  baseURL: import.meta.env.DEV ? '/api' : `${NGROK_URL}/api`,
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
