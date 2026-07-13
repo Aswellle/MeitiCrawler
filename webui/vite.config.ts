@@ -4,13 +4,15 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
+  // GitHub Pages: repo name is MeitiCrawler
+  base: '/MeitiCrawler/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
   },
   build: {
-    outDir: '../api/webui',
+    outDir: '../gh-pages-dist',
     emptyOutDir: true,
   },
   server: {
@@ -19,7 +21,7 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:8083',
         changeOrigin: true,
-        ws: true,  // 启用 WebSocket 代理
+        ws: true,
       },
     },
   },

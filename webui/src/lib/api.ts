@@ -1,7 +1,13 @@
 import axios from 'axios'
 
+// In dev, use Vite proxy (relative /api).
+// In production (GitHub Pages), connect to local backend directly.
+const baseURL = import.meta.env.DEV
+  ? '/api'
+  : 'http://localhost:8083/api'
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL,
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
