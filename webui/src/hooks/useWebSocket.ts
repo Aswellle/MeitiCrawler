@@ -30,9 +30,11 @@ export function useLogWebSocket() {
         return
       }
 
-      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
-      const host = window.location.host
-      const wsUrl = `${protocol}//${host}/api/ws/logs`
+      const protocol = 'wss:'
+      const host = import.meta.env.DEV ? window.location.host : 'kinase-makers-question-respectively.trycloudflare.com'
+      const wsUrl = import.meta.env.DEV
+        ? `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${host}/api/ws/logs`
+        : `${protocol}//${host}/api/ws/logs`
 
       const ws = new WebSocket(wsUrl)
       globalWs = ws

@@ -1,9 +1,10 @@
 import axios from 'axios'
 
-// GitHub Pages 仅供展示。实际使用请用本地开发环境: http://localhost:5173
-// Vite proxy 会将 /api 转发到 localhost:8083
+// Cloudflare Tunnel HTTPS backend (runs localhost:8083)
+const CF_TUNNEL = 'https://kinase-makers-question-respectively.trycloudflare.com'
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.DEV ? '/api' : `${CF_TUNNEL}/api`,
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json',

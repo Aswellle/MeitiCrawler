@@ -32,9 +32,11 @@ export function useStatusWebSocket() {
         return
       }
 
-      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
-      const host = window.location.host
-      const wsUrl = `${protocol}//${host}/api/ws/status`
+      const protocol = 'wss:'
+      const host = import.meta.env.DEV ? window.location.host : 'kinase-makers-question-respectively.trycloudflare.com'
+      const wsUrl = import.meta.env.DEV
+        ? `${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${host}/api/ws/status`
+        : `${protocol}//${host}/api/ws/status`
 
       const ws = new WebSocket(wsUrl)
       globalStatusWs = ws
