@@ -28,10 +28,10 @@ export function useStartCrawler() {
   return useMutation({
     mutationFn: (config: CrawlerConfig) => crawlerApi.start(config),
     onMutate: () => {
-      clearLogs()
       setStatus('running')
     },
     onSuccess: () => {
+      clearLogs()
       toast.success('Crawler started successfully')
       queryClient.invalidateQueries({ queryKey: ['crawlerStatus'] })
     },
@@ -57,6 +57,7 @@ export function useStopCrawler() {
       queryClient.invalidateQueries({ queryKey: ['crawlerStatus'] })
     },
     onError: (error: Error) => {
+      setStatus('idle')
       toast.error(`Failed to stop crawler: ${error.message}`)
     },
   })

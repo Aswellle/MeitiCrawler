@@ -1,6 +1,7 @@
 import type { ComponentType, ReactNode, KeyboardEvent } from 'react'
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { toast } from 'sonner'
 import { Database, Globe, KeyRound, MessageSquare, Play, Square, X, Settings2, Chrome, QrCode, Smartphone, Cookie } from 'lucide-react'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -272,7 +273,38 @@ export function CrawlerConfigPanel() {
     return text.trim()
   }
 
+  const removeParsedItemId = (field: 'specified_ids' | 'creator_ids', index: number) => {
+    const current = config[field]
+    const items = current
+      .split(/[,\n]+/)
+      .map(s => s.trim())
+      .filter(Boolean)
+    if (index >= 0 && index < items.length) {
+      items.splice(index, 1)
+      updateConfig({ [field]: items.join('\n') })
+    }
+  }
+
   const handleStart = () => {
+    // Client-side validation
+    const errors: string[] = []
+    if (config.crawler_type === 'search' && !config.keywords.trim()) {
+      errors.push(t('validation.keywordsRequired'))
+    }
+    if (config.crawler_type === 'detail' && !config.specified_ids.trim()) {
+      errors.push(t('validation.specifiedIdsRequired'))
+    }
+    if (config.crawler_type === 'creator' && !config.creator_ids.trim()) {
+      errors.push(t('validation.creatorIdsRequired'))
+    }
+    if (config.login_type === 'cookie' && !config.cookies.trim()) {
+      errors.push(t('validation.cookiesRequired'))
+    }
+    if (errors.length > 0) {
+      toast.error(errors.join('\n'))
+      return
+    }
+
     // Clean specified_ids and creator_ids: extract pure URLs from mixed text
     const cleanConfig = {
       ...config,
@@ -283,7 +315,9 @@ export function CrawlerConfigPanel() {
   }
 
   const handleStop = () => {
-    stopCrawler()
+    if (window.confirm(t('confirm.stopCrawler'))) {
+      stopCrawler()
+    }
   }
 
   return (
@@ -373,6 +407,7 @@ export function CrawlerConfigPanel() {
                 platform={config.platform}
                 type="detail"
                 disabled={isDisabled}
+                onRemove={(index) => removeParsedItemId('specified_ids', index)}
               />
               {config.platform === 'xhs' && (
                 <div className="mt-2 rounded-lg border border-cyber-neon-orange/30 bg-cyber-neon-orange/5 p-3 text-sm leading-snug text-cyber-neon-orange font-mono">
@@ -396,6 +431,7 @@ export function CrawlerConfigPanel() {
                 platform={config.platform}
                 type="creator"
                 disabled={isDisabled}
+                onRemove={(index) => removeParsedItemId('creator_ids', index)}
               />
               {config.platform === 'xhs' && (
                 <div className="mt-2 rounded-lg border border-cyber-neon-orange/30 bg-cyber-neon-orange/5 p-2 text-[11px] leading-snug text-cyber-neon-orange font-mono">

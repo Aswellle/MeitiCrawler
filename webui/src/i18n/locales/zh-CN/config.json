@@ -116,5 +116,14 @@
       "commonStep3": "将复制的 Cookie 字符串粘贴到下方文本框中",
       "commonStep4": "注意 Cookie 有过期时间，过期后需要重新获取"
     }
+  },
+  "validation": {
+    "keywordsRequired": "请输入搜索关键词",
+    "specifiedIdsRequired": "请输入指定的帖子/视频 ID",
+    "creatorIdsRequired": "请输入创作者主页链接或 ID",
+    "cookiesRequired": "请输入 Cookie 字符串"
+  },
+  "confirm": {
+    "stopCrawler": "确定要停止当前正在运行的爬虫吗？正在爬取的数据可能丢失。"
   }
 }

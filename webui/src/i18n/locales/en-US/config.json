@@ -116,5 +116,14 @@
       "commonStep3": "Paste the cookie string into the text area below",
       "commonStep4": "Note: cookies expire, you'll need to refresh them periodically"
     }
+  },
+  "validation": {
+    "keywordsRequired": "Please enter search keywords",
+    "specifiedIdsRequired": "Please enter note/video IDs",
+    "creatorIdsRequired": "Please enter creator profile links or IDs",
+    "cookiesRequired": "Please enter cookies"
+  },
+  "confirm": {
+    "stopCrawler": "Are you sure you want to stop the running crawler? Crawling data may be lost."
   }
 }
