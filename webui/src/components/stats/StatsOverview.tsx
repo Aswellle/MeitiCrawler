@@ -77,7 +77,7 @@ export function StatsOverview() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <BarChart3 className="w-5 h-5 text-cyber-neon-cyan" />
+          <BarChart3 className="w-5 h-5 text-cyber-neon-cyan" aria-hidden="true" />
           <h2 className="text-sm font-mono font-bold text-cyber-neon-cyan tracking-wider">
             {t('stats.title')}
           </h2>
@@ -89,14 +89,14 @@ export function StatsOverview() {
           disabled={isRefetching}
           className="h-8 text-xs font-mono"
         >
-          <RefreshCw className={`w-3.5 h-3.5 mr-1 ${isRefetching ? 'animate-spin' : ''}`} />
+          <RefreshCw className={`w-3.5 h-3.5 mr-1 ${isRefetching ? 'animate-spin' : ''}`} aria-hidden="true" />
           {t('explorer.rescan')}
         </Button>
       </div>
 
       {!hasData ? (
         <div className="flex flex-col items-center justify-center py-16 text-center">
-          <FolderOpen className="w-16 h-16 text-cyber-neon-cyan/20 mb-4" />
+          <FolderOpen className="w-16 h-16 text-cyber-neon-cyan/20 mb-4" aria-hidden="true" />
           <h3 className="text-lg font-mono font-medium text-cyber-neon-cyan mb-2">
             {t('explorer.noData')}
           </h3>
@@ -109,25 +109,25 @@ export function StatsOverview() {
           {/* Summary Cards */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             <StatCard
-              icon={<FolderOpen className="w-5 h-5" />}
+              icon={<FolderOpen className="w-5 h-5" aria-hidden="true" />}
               label={t('stats.totalFiles')}
               value={data.total_files}
               color="cyan"
             />
             <StatCard
-              icon={<HardDrive className="w-5 h-5" />}
+              icon={<HardDrive className="w-5 h-5" aria-hidden="true" />}
               label={t('stats.totalSize')}
               value={formatFileSize(data.total_size)}
               color="purple"
             />
             <StatCard
-              icon={<FileJson className="w-5 h-5" />}
+              icon={<FileJson className="w-5 h-5" aria-hidden="true" />}
               label={t('stats.byType')}
               value={Object.entries(data.by_type || {}).map(([k, v]) => `${k}: ${v}`).join(', ') || '-'}
               color="green"
             />
             <StatCard
-              icon={<FileSpreadsheet className="w-5 h-5" />}
+              icon={<FileSpreadsheet className="w-5 h-5" aria-hidden="true" />}
               label={t('stats.byPlatform')}
               value={Object.keys(data.by_platform || {}).length || 0}
               sub={Object.entries(data.by_platform || {}).map(([k, v]) => `${k}: ${v}`).join(', ')}

@@ -55,8 +55,13 @@ i18n
     },
   })
 
-// 语言检测后处理：非英文一律显示中文
+// Sync <html lang> attribute when language changes
+const syncHtmlLang = (lng: string) => {
+  document.documentElement.lang = lng
+}
+
 i18n.on('languageChanged', (lng) => {
+  syncHtmlLang(lng)
   if (lng && !lng.startsWith('en') && i18n.language !== 'zh-CN') {
     i18n.changeLanguage('zh-CN')
   }
@@ -66,6 +71,8 @@ i18n.on('languageChanged', (lng) => {
 const savedLang = localStorage.getItem('mediacrawler_language')
 if (!savedLang || !savedLang.startsWith('en')) {
   i18n.changeLanguage('zh-CN')
+} else {
+  syncHtmlLang(savedLang)
 }
 
 export default i18n

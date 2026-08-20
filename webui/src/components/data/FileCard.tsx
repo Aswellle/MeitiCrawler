@@ -71,7 +71,7 @@ export function FileCard({ file }: FileCardProps) {
         <CardContent className="p-4 relative">
           <div className="flex items-start gap-3">
             <div className={`p-2 rounded bg-cyber-bg-panel border border-cyber-border-DEFAULT ${styles.icon}`}>
-              <Icon className="w-6 h-6" />
+              <Icon className="w-6 h-6" aria-hidden="true" />
             </div>
             <div className="flex-1 min-w-0">
               <h3 className="font-mono font-medium text-sm text-cyber-text-primary truncate" title={file.name}>
@@ -101,7 +101,7 @@ export function FileCard({ file }: FileCardProps) {
                   className="h-7 px-2 font-mono text-cyber-neon-cyan hover:text-cyber-neon-cyan hover:bg-cyber-neon-cyan/10"
                   onClick={() => setPreviewOpen(true)}
                 >
-                  <Eye className="w-3 h-3 mr-1" />
+                  <Eye className="w-3 h-3 mr-1" aria-hidden="true" />
                   {t('file.preview')}
                 </Button>
               )}
@@ -111,7 +111,7 @@ export function FileCard({ file }: FileCardProps) {
                 className="h-7 px-2 font-mono text-cyber-neon-cyan hover:text-cyber-neon-cyan hover:bg-cyber-neon-cyan/10"
                 onClick={handleDownload}
               >
-                <Download className="w-3 h-3 mr-1" />
+                <Download className="w-3 h-3 mr-1" aria-hidden="true" />
                 {t('file.extract')}
               </Button>
             </div>

@@ -21,7 +21,7 @@ export function Sidebar({ onShowDisclaimer }: SidebarProps) {
       <div className="h-full px-4 flex items-center justify-between">
         {/* Left: Logo */}
         <div className="flex items-center gap-3">
-          <Bug className="w-5 h-5 text-cyber-neon-cyan" />
+          <Bug className="w-5 h-5 text-cyber-neon-cyan" aria-hidden="true" />
           <span className="font-mono font-bold text-cyber-text-primary tracking-wider text-sm">
             MediaCrawler
           </span>
@@ -40,7 +40,7 @@ export function Sidebar({ onShowDisclaimer }: SidebarProps) {
           onClick={onShowDisclaimer}
           className="flex items-center gap-3 px-4 py-1.5 rounded-lg border border-cyber-neon-orange/50 bg-cyber-neon-orange/10 hover:bg-cyber-neon-orange/20 transition-all cursor-pointer"
         >
-          <AlertTriangle className="w-4 h-4 text-cyber-neon-orange flex-shrink-0" />
+          <AlertTriangle className="w-4 h-4 text-cyber-neon-orange flex-shrink-0" aria-hidden="true" />
           <div className="flex items-center gap-4 text-xs font-mono">
             <span className="text-cyber-neon-orange">
               <span className="text-cyber-neon-pink font-bold">1.</span> {tLicense('content.line1')}
@@ -63,7 +63,7 @@ export function Sidebar({ onShowDisclaimer }: SidebarProps) {
             <span className="text-cyber-text-muted">{t('sidebar.api')}:</span>
             <span className="text-cyber-neon-green">v1.0.0</span>
             <div className="flex items-center gap-1.5">
-              <Wifi className="w-3 h-3 text-cyber-text-secondary" />
+              <Wifi className="w-3 h-3 text-cyber-text-secondary" aria-hidden="true" />
               <span className="text-cyber-text-secondary">{t('sidebar.local')}</span>
               <span className="status-dot status-dot-online" />
             </div>

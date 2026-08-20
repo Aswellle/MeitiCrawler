@@ -91,7 +91,7 @@ export function DataExplorer() {
           disabled={isRefetching}
           className="font-mono"
         >
-          <RefreshCw className={`w-4 h-4 ${isRefetching ? 'animate-spin' : ''}`} />
+          <RefreshCw className={`w-4 h-4 ${isRefetching ? 'animate-spin' : ''}`} aria-hidden="true" />
           {t('explorer.rescan')}
         </Button>
       </div>
@@ -135,7 +135,7 @@ export function DataExplorer() {
       ) : error ? (
         <div className="flex-1 flex flex-col items-center justify-center text-center">
           <div className="relative">
-            <FolderOpen className="w-16 h-16 text-cyber-neon-orange/30 mb-4" />
+            <FolderOpen className="w-16 h-16 text-cyber-neon-orange/30 mb-4" aria-hidden="true" />
             <div className="absolute inset-0 blur-xl bg-cyber-neon-orange/10" />
           </div>
           <h3 className="text-lg font-mono font-medium text-cyber-neon-orange mb-2">
@@ -150,14 +150,14 @@ export function DataExplorer() {
             onClick={() => refetch()}
             className="font-mono"
           >
-            <RefreshCw className="w-4 h-4 mr-2" />
+            <RefreshCw className="w-4 h-4 mr-2" aria-hidden="true" />
             {t('explorer.rescan')}
           </Button>
         </div>
       ) : files.length === 0 ? (
         <div className="flex-1 flex flex-col items-center justify-center text-center">
           <div className="relative">
-            <FolderOpen className="w-16 h-16 text-cyber-neon-cyan/30 mb-4" />
+            <FolderOpen className="w-16 h-16 text-cyber-neon-cyan/30 mb-4" aria-hidden="true" />
             <div className="absolute inset-0 blur-xl bg-cyber-neon-cyan/10" />
           </div>
           <h3 className="text-lg font-mono font-medium text-cyber-neon-cyan mb-2">

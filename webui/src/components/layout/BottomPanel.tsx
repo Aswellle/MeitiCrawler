@@ -35,11 +35,11 @@ export function BottomPanel({ open, onToggle, activeTab, onTabChange }: BottomPa
       id: 'console',
       icon: isRunning
         ? <span className="w-3.5 h-3.5 flex items-center justify-center"><span className="w-2 h-2 bg-cyber-neon-green rounded-full shadow-glow-green-sm animate-pulse-fast" /></span>
-        : <Terminal className="w-3.5 h-3.5" />,
+        : <Terminal className="w-3.5 h-3.5" aria-hidden="true" />,
       labelKey: 'tab.console',
     },
-    { id: 'data', icon: <Database className="w-3.5 h-3.5" />, labelKey: 'tab.data' },
-    { id: 'stats', icon: <Activity className="w-3.5 h-3.5" />, labelKey: 'tab.stats' },
+    { id: 'data', icon: <Database className="w-3.5 h-3.5" aria-hidden="true" />, labelKey: 'tab.data' },
+    { id: 'stats', icon: <Activity className="w-3.5 h-3.5" aria-hidden="true" />, labelKey: 'tab.stats' },
   ]
 
   // Handle drag resize
@@ -131,7 +131,7 @@ export function BottomPanel({ open, onToggle, activeTab, onTabChange }: BottomPa
             aria-label={t ? t('panel.closePanel') : 'Close panel'}
             title="关闭面板"
           >
-            <X className="w-3.5 h-3.5" />
+            <X className="w-3.5 h-3.5" aria-hidden="true" />
           </button>
         </div>
       </div>

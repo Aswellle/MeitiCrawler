@@ -29,9 +29,9 @@ export function Terminal() {
         <div className="flex items-center gap-3">
           {/* Window buttons */}
           <div className="flex gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-cyber-neon-pink/80" />
-            <span className="w-2.5 h-2.5 rounded-full bg-cyber-neon-orange/80" />
-            <span className="w-2.5 h-2.5 rounded-full bg-cyber-neon-green/80" />
+            <span className="w-2.5 h-2.5 rounded-full bg-cyber-neon-pink/80" aria-hidden="true" />
+            <span className="w-2.5 h-2.5 rounded-full bg-cyber-neon-orange/80" aria-hidden="true" />
+            <span className="w-2.5 h-2.5 rounded-full bg-cyber-neon-green/80" aria-hidden="true" />
           </div>
           <span className="text-xs text-[#8b949e] font-mono tracking-wider">
             {t('header.title')}

@@ -26,7 +26,7 @@ function Section({ title, description, icon: Icon, children, className = '' }: S
     <section className={`rounded-lg glass-panel float-panel overflow-hidden ${className}`}>
       <header className="px-4 py-3 border-b border-cyber-border-subtle/50 flex items-center gap-3 bg-cyber-bg-tertiary/30">
         <div className="h-8 w-8 rounded-md bg-cyber-bg-tertiary border border-cyber-border-subtle flex items-center justify-center flex-shrink-0">
-          <Icon className="h-4 w-4 text-cyber-neon-cyan" />
+          <Icon className="h-4 w-4 text-cyber-neon-cyan" aria-hidden="true" />
         </div>
         <div className="min-w-0">
           <div className="text-sm font-mono font-bold text-cyber-text-primary tracking-wide">
@@ -47,14 +47,15 @@ function Section({ title, description, icon: Icon, children, className = '' }: S
 type FieldProps = {
   label: string
   hint?: string
+  htmlFor?: string
   children: ReactNode
 }
 
-function Field({ label, hint, children }: FieldProps) {
+function Field({ label, hint, htmlFor, children }: FieldProps) {
   return (
     <div className="space-y-2">
       <div className="space-y-0.5">
-        <Label className="text-sm text-cyber-text-secondary font-mono font-medium">
+        <Label htmlFor={htmlFor} className="text-sm text-cyber-text-secondary font-mono font-medium">
           {label}
         </Label>
         {hint ? (
@@ -69,13 +70,14 @@ function Field({ label, hint, children }: FieldProps) {
 }
 
 type KeywordInputProps = {
+  id?: string
   value: string
   onChange: (value: string) => void
   placeholder?: string
   disabled?: boolean
 }
 
-function KeywordInput({ value, onChange, placeholder, disabled }: KeywordInputProps) {
+function KeywordInput({ id, value, onChange, placeholder, disabled }: KeywordInputProps) {
   const [inputValue, setInputValue] = useState('')
 
   // 将逗号分隔的字符串转换为数组
@@ -98,9 +100,10 @@ function KeywordInput({ value, onChange, placeholder, disabled }: KeywordInputPr
     onChange(newKeywords.join(','))
   }
 
-  return (
+    return (
     <div className="space-y-2">
       <Input
+        id={id}
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
@@ -185,7 +188,7 @@ export function CrawlerConfigPanel() {
   const getLoginGuidance = (): { icon: React.ReactNode; title: string; steps: string[]; color: string } | null => {
     if (config.login_type === 'qrcode') {
       return {
-        icon: <QrCode className="w-4 h-4" />,
+        icon: <QrCode className="w-4 h-4" aria-hidden="true" />,
         title: t('loginGuide.qrcode.title'),
         steps: [
           t('loginGuide.qrcode.step1'),
@@ -197,7 +200,7 @@ export function CrawlerConfigPanel() {
     }
     if (config.login_type === 'phone') {
       return {
-        icon: <Smartphone className="w-4 h-4" />,
+        icon: <Smartphone className="w-4 h-4" aria-hidden="true" />,
         title: t('loginGuide.phone.title'),
         steps: [
           t('loginGuide.phone.step1'),
@@ -243,7 +246,7 @@ export function CrawlerConfigPanel() {
         ],
       }
       return {
-        icon: <Cookie className="w-4 h-4" />,
+        icon: <Cookie className="w-4 h-4" aria-hidden="true" />,
         title: t('loginGuide.cookie.title'),
         steps: guide.steps,
         color: 'border-cyber-neon-orange/30 bg-cyber-neon-orange/5 text-cyber-neon-orange',
@@ -330,14 +333,12 @@ export function CrawlerConfigPanel() {
           description={t('section.targetMatrix.description')}
           icon={Globe}
         >
-          <Field label={t('field.platform')}>
+          <Field label={t('field.platform')} htmlFor="field-platform">
             <Select
               value={config.platform}
               onValueChange={(value) => updateConfig({ platform: value })}
-              disabled={isDisabled}
             >
-              <SelectTrigger className="h-10 text-sm">
-                <SelectValue placeholder={t('field.platformPlaceholder')} />
+              <SelectTrigger id="field-platform" className="h-10 text-sm">
               </SelectTrigger>
               <SelectContent>
                 {platforms?.map((platform) => (
@@ -350,13 +351,12 @@ export function CrawlerConfigPanel() {
           </Field>
 
           <div className="grid grid-cols-2 gap-3">
-            <Field label={t('field.crawlType')}>
+            <Field label={t('field.crawlType')} htmlFor="field-crawlType">
               <Select
                 value={config.crawler_type}
                 onValueChange={(value) => updateConfig({ crawler_type: value })}
-                disabled={isDisabled}
               >
-                <SelectTrigger className="h-10 text-sm">
+                <SelectTrigger id="field-crawlType" className="h-10 text-sm">
                   <SelectValue placeholder={t('field.crawlTypePlaceholder')} />
                 </SelectTrigger>
                 <SelectContent>
@@ -369,10 +369,10 @@ export function CrawlerConfigPanel() {
               </Select>
             </Field>
 
-            <Field label={t('field.startPage')}>
+            <Field label={t('field.startPage')} htmlFor="field-startPage">
               <Input
+                id="field-startPage"
                 type="number"
-                min={1}
                 value={config.start_page}
                 onChange={(e) => updateConfig({ start_page: parseInt(e.target.value) || 1 })}
                 disabled={isDisabled}
@@ -383,19 +383,21 @@ export function CrawlerConfigPanel() {
 
           {/* 根据爬虫类型显示不同的输入框 */}
           {config.crawler_type === 'search' && (
-            <Field label={t('field.keywords')} hint={t('field.keywordsHint')}>
+            <Field label={t('field.keywords')} hint={t('field.keywordsHint')} htmlFor="field-keywords">
               <KeywordInput
-                placeholder={t('field.keywordsPlaceholder')}
+                id="field-keywords"
                 value={config.keywords}
-                onChange={(keywords) => updateConfig({ keywords })}
+                onChange={(value) => updateConfig({ keywords: value })}
+                placeholder={t('field.keywordsPlaceholder')}
                 disabled={isDisabled}
               />
             </Field>
           )}
 
           {config.crawler_type === 'detail' && (
-            <Field label={t('field.specifiedIds')} hint={t('field.specifiedIdsHint')}>
+            <Field label={t('field.specifiedIds')} hint={t('field.specifiedIdsHint')} htmlFor="field-specifiedIds">
               <textarea
+                id="field-specifiedIds"
                 value={config.specified_ids}
                 onChange={(e) => updateConfig({ specified_ids: e.target.value })}
                 disabled={isDisabled}
@@ -418,8 +420,9 @@ export function CrawlerConfigPanel() {
           )}
 
           {config.crawler_type === 'creator' && (
-            <Field label={t('field.creatorIds')} hint={t('field.creatorIdsHint')}>
+            <Field label={t('field.creatorIds')} hint={t('field.creatorIdsHint')} htmlFor="field-creatorIds">
               <textarea
+                id="field-creatorIds"
                 value={config.creator_ids}
                 onChange={(e) => updateConfig({ creator_ids: e.target.value })}
                 disabled={isDisabled}
@@ -448,13 +451,13 @@ export function CrawlerConfigPanel() {
           description={t('section.authMatrix.description')}
           icon={KeyRound}
         >
-          <Field label={t('field.loginMethod')}>
+          <Field label={t('field.loginMethod')} htmlFor="field-loginMethod">
             <Select
               value={config.login_type}
               onValueChange={(value) => updateConfig({ login_type: value })}
               disabled={isDisabled}
             >
-              <SelectTrigger className="h-10 text-sm">
+              <SelectTrigger id="field-loginMethod" className="h-10 text-sm">
                 <SelectValue placeholder={t('field.loginMethodPlaceholder')} />
               </SelectTrigger>
               <SelectContent>
@@ -492,8 +495,9 @@ export function CrawlerConfigPanel() {
 
           {/* Cookie textarea - only when cookie login is selected */}
           {config.login_type === 'cookie' ? (
-            <Field label={t('field.cookies')} hint={t('field.cookiesHint')}>
+            <Field label={t('field.cookies')} hint={t('field.cookiesHint')} htmlFor="field-cookies">
               <textarea
+                id="field-cookies"
                 value={config.cookies}
                 onChange={(e) => updateConfig({ cookies: e.target.value })}
                 disabled={isDisabled}
@@ -516,13 +520,13 @@ export function CrawlerConfigPanel() {
           description={t('section.outputConfig.description')}
           icon={Database}
         >
-          <Field label={t('field.saveFormat')}>
+          <Field label={t('field.saveFormat')} htmlFor="field-saveFormat">
             <Select
               value={config.save_option}
               onValueChange={(value) => updateConfig({ save_option: value })}
               disabled={isDisabled}
             >
-              <SelectTrigger className="h-10 text-sm">
+              <SelectTrigger id="field-saveFormat" className="h-10 text-sm">
                 <SelectValue placeholder={t('field.saveFormatPlaceholder')} />
               </SelectTrigger>
               <SelectContent>
@@ -538,6 +542,7 @@ export function CrawlerConfigPanel() {
           <div className="space-y-2">
             <div className="flex items-center gap-3 rounded-lg border border-cyber-border-subtle bg-cyber-bg-tertiary/30 p-2.5 hover:border-cyber-border-DEFAULT transition-colors">
               <Checkbox
+                id="field-enableComments"
                 checked={config.enable_comments}
                 onCheckedChange={(checked) => {
                   const isChecked = checked === true
@@ -548,29 +553,31 @@ export function CrawlerConfigPanel() {
                 }}
                 disabled={isDisabled}
               />
-              <div className="flex items-center gap-2">
-                <MessageSquare className="h-3.5 w-3.5 text-cyber-text-secondary" />
+              <label htmlFor="field-enableComments" className="flex items-center gap-2 cursor-pointer">
+                <MessageSquare className="h-3.5 w-3.5 text-cyber-text-secondary" aria-hidden="true" />
                 <p className="text-sm font-mono text-cyber-text-primary">{t('field.commentExtraction')}</p>
+              </label>
               </div>
-            </div>
 
             <div className="flex items-center gap-3 rounded-lg border border-cyber-border-subtle bg-cyber-bg-tertiary/30 p-2.5 hover:border-cyber-border-DEFAULT transition-colors">
               <Checkbox
+                id="field-enableSubComments"
                 checked={config.enable_sub_comments}
                 onCheckedChange={(checked) => updateConfig({ enable_sub_comments: checked === true })}
                 disabled={isDisabled || !config.enable_comments}
               />
-              <p className="text-sm font-mono text-cyber-text-primary">{t('field.subComments')}</p>
+              <label htmlFor="field-enableSubComments" className="text-sm font-mono text-cyber-text-primary cursor-pointer">{t('field.subComments')}</label>
             </div>
 
             <div className="flex items-center gap-3 rounded-lg border border-cyber-border-subtle bg-cyber-bg-tertiary/30 p-2.5 hover:border-cyber-border-DEFAULT transition-colors">
               <Checkbox
+                id="field-headlessMode"
                 checked={config.headless}
                 onCheckedChange={(checked) => updateConfig({ headless: checked === true })}
                 disabled={isDisabled}
               />
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-mono text-cyber-text-primary">{t('field.headlessMode')}</p>
+                <label htmlFor="field-headlessMode" className="text-sm font-mono text-cyber-text-primary cursor-pointer">{t('field.headlessMode')}</label>
                 <p className="text-[11px] text-cyber-text-muted leading-snug">
                   {t('field.headlessModeHint')}
                 </p>
@@ -580,8 +587,9 @@ export function CrawlerConfigPanel() {
 
           {/* Advanced: Max Notes & Comments - only show when relevant */}
           <div className="grid grid-cols-2 gap-3 pt-2 border-t border-cyber-border-subtle">
-            <Field label={t('field.maxNotes')}>
+            <Field label={t('field.maxNotes')} htmlFor="field-maxNotes">
               <Input
+                id="field-maxNotes"
                 type="number"
                 min={1}
                 max={10000}
@@ -594,8 +602,9 @@ export function CrawlerConfigPanel() {
                 className="h-10 text-sm"
               />
             </Field>
-            <Field label={t('field.maxComments')}>
+            <Field label={t('field.maxComments')} htmlFor="field-maxComments">
               <Input
+                id="field-maxComments"
                 type="number"
                 min={1}
                 max={10000}
@@ -616,7 +625,7 @@ export function CrawlerConfigPanel() {
       <div className="w-full">
         <div className="rounded-lg border-2 border-cyber-neon-cyan/30 bg-cyber-neon-cyan/[0.08] p-4">
           <div className="flex items-start gap-3">
-            <Chrome className="w-6 h-6 text-cyber-neon-cyan flex-shrink-0 mt-0.5" />
+            <Chrome className="w-6 h-6 text-cyber-neon-cyan flex-shrink-0 mt-0.5" aria-hidden="true" />
             <div className="flex-1 space-y-3 text-sm font-mono text-cyber-text-secondary">
               <p className="font-bold text-cyber-neon-cyan text-base">{t('prerequisites.title')}</p>
               <p className="text-cyber-text-primary">{t('prerequisites.cdpRequired')}</p>
@@ -684,7 +693,7 @@ export function CrawlerConfigPanel() {
             }}
             className="h-8 text-sm font-mono text-cyber-text-muted hover:text-cyber-neon-cyan"
           >
-            <Settings2 className="w-3.5 h-3.5 mr-1" />
+            <Settings2 className="w-3.5 h-3.5 mr-1" aria-hidden="true" />
             {t('button.reset')}
           </Button>
         </div>
@@ -696,7 +705,7 @@ export function CrawlerConfigPanel() {
             disabled={isBusy}
             className="w-full h-12 bg-cyber-neon-pink text-white font-mono font-bold text-sm tracking-wider hover:bg-cyber-neon-pink/90 hover:shadow-glow-pink-sm transition-all"
           >
-            <Square className="w-4 h-4" />
+            <Square className="w-4 h-4" aria-hidden="true" />
             {isStopping ? t('button.stopping') : t('button.terminate')}
           </Button>
         ) : (
@@ -705,7 +714,7 @@ export function CrawlerConfigPanel() {
             disabled={isBusy}
             className="w-full h-12 bg-cyber-neon-cyan text-cyber-bg-primary font-mono font-bold text-sm tracking-wider hover:bg-cyber-neon-cyan/90 hover:shadow-glow-cyan-sm transition-all"
           >
-            <Play className="w-4 h-4" />
+            <Play className="w-4 h-4" aria-hidden="true" />
             {isStarting ? t('button.initiating') : t('button.initiateScan')}
           </Button>
         )}
