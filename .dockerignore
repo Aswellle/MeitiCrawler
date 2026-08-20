@@ -1,0 +1,67 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# CI/CD (not needed in image — frontend built separately to GitHub Pages)
+.github
+docs/
+
+# Frontend (built via GitHub Actions, not in Docker image)
+webui/
+gh-pages-dist/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.python-version
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Testing
+tests/
+test/
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Local data (will be replaced by Railway volume mount)
+data/
+browser_data/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Local env files (Railway uses dashboard env vars)
+.env
+.env.local
+.env.*.local
+
+# Lockfile (we use requirements.txt inside Docker)
+uv.lock
+
+# Misc
+*.md
+LICENSE
+CLAUDE.md
+AGENTS.md
+start.ps1
+stop.ps1
