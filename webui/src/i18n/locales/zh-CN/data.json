@@ -10,6 +10,8 @@
     "loading": "[加载中] 正在扫描数据目录...",
     "noData": "暂无数据",
     "noDataHint": "启动爬虫开始数据采集，完成后结果将显示在此处。",
+    "loadError": "加载失败",
+    "loadErrorHint": "无法读取数据目录，请检查后端服务是否正常运行。",
     "allCategories": "全部"
   },
   "file": {

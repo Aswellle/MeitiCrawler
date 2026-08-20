@@ -39,7 +39,7 @@ export function StatsOverview() {
   const { t } = useTranslation('data')
   const { t: tCommon } = useTranslation()
 
-  const { data, isLoading, refetch, isRefetching } = useQuery({
+  const { data, isLoading, refetch, isRefetching, error } = useQuery({
     queryKey: ['dataStats'],
     queryFn: async () => {
       const { data } = await dataApi.getStats()
@@ -53,6 +53,19 @@ export function StatsOverview() {
         <div className="text-cyber-text-muted font-mono animate-pulse">
           {t('explorer.loading')}
         </div>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="flex flex-col items-center justify-center h-64 text-center">
+        <FolderOpen className="w-12 h-12 text-cyber-neon-orange/30 mb-3" />
+        <p className="text-cyber-neon-orange font-mono mb-2">{t('explorer.loadError')}</p>
+        <Button variant="outline" size="sm" onClick={() => refetch()} className="font-mono">
+          <RefreshCw className="w-3 h-3 mr-1" />
+          {t('explorer.rescan')}
+        </Button>
       </div>
     )
   }

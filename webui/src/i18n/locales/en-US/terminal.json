@@ -4,6 +4,8 @@
     "entries": "{{count}} entries",
     "active": "ACTIVE",
     "clear": "CLEAR",
+    "confirmClear": "Are you sure you want to clear all logs?",
+    "closePanel": "CLOSE PANEL",
     "restore": "RESTORE ALL LOGS"
   },
   "banner": {

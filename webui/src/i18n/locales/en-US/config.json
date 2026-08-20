@@ -76,7 +76,9 @@
     "copy": "Copy Config",
     "export": "Export File",
     "savedList": "Saved Configs",
-    "noSaved": "No saved configs yet"
+    "noSaved": "No saved configs yet",
+    "confirmOverwrite": "A config with this name already exists. Overwrite?",
+    "confirmDelete": "Are you sure you want to delete this config?"
   },
   "warning": {
     "cookieSlider": "[Note] Cookie login is not recommended for Xiaohongshu and Douyin due to slider captcha",
@@ -124,6 +126,7 @@
     "cookiesRequired": "Please enter cookies"
   },
   "confirm": {
-    "stopCrawler": "Are you sure you want to stop the running crawler? Crawling data may be lost."
+    "stopCrawler": "Are you sure you want to stop the running crawler? Crawling data may be lost.",
+    "resetConfig": "Are you sure you want to reset all config fields to defaults?"
   }
 }

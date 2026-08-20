@@ -51,6 +51,12 @@ export function ConfigPresets() {
 
   const handleSave = () => {
     if (!saveName.trim()) return
+    const existing = savedConfigs.find(c => c.name === saveName.trim())
+    if (existing) {
+      if (!window.confirm(t('presets.confirmOverwrite'))) {
+        return
+      }
+    }
     saveConfigToStore(saveName.trim(), config)
     setSaveName('')
     setSaved(true)
@@ -64,8 +70,10 @@ export function ConfigPresets() {
   }
 
   const handleDelete = (name: string) => {
-    deleteConfigFromStore(name)
-    refreshConfigs()
+    if (window.confirm(t('presets.confirmDelete'))) {
+      deleteConfigFromStore(name)
+      refreshConfigs()
+    }
   }
 
   const handleCopyConfig = () => {

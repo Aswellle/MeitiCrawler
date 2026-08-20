@@ -661,24 +661,27 @@ export function CrawlerConfigPanel() {
           <Button
             variant="ghost"
             size="sm"
-            disabled={isDisabled}
-            onClick={() => updateConfig({
-              platform: 'bili',
-              login_type: 'qrcode',
-              crawler_type: 'search',
-              keywords: '',
-              specified_ids: '',
-              creator_ids: '',
-              start_page: 1,
-              enable_comments: true,
-              enable_sub_comments: false,
-              save_option: 'json',
-              cookies: '',
-              headless: false,
-              max_notes_count: null,
-              max_comments_count: null,
-              cdp_auto_launch: false,
-            })}
+            onClick={() => {
+              if (window.confirm(t('confirm.resetConfig'))) {
+                updateConfig({
+                  platform: 'xhs',
+                  crawler_type: 'search',
+                  login_type: 'qrcode',
+                  keywords: '',
+                  specified_ids: '',
+                  creator_ids: '',
+                  start_page: 1,
+                  enable_comments: true,
+                  enable_sub_comments: false,
+                  save_option: 'json',
+                  cookies: '',
+                  headless: false,
+                  max_notes_count: null,
+                  max_comments_count: null,
+                  cdp_auto_launch: false,
+                })
+              }
+            }}
             className="h-8 text-sm font-mono text-cyber-text-muted hover:text-cyber-neon-cyan"
           >
             <Settings2 className="w-3.5 h-3.5 mr-1" />

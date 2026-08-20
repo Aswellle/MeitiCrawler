@@ -67,7 +67,11 @@ export function Terminal() {
           <Button
             variant="ghost"
             size="sm"
-            onClick={clearLogs}
+            onClick={() => {
+              if (logs.length > 0 && window.confirm(t('header.confirmClear'))) {
+                clearLogs()
+              }
+            }}
             disabled={logs.length === 0}
             className="h-7 px-2 text-[#8b949e] hover:text-[#ff0080] hover:bg-[#ff0080]/10 disabled:opacity-30"
             title={t('header.clear')}

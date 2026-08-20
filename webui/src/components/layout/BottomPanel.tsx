@@ -97,12 +97,16 @@ export function BottomPanel({ open, onToggle, activeTab, onTabChange }: BottomPa
 
       {/* Tab Bar with buttons */}
       <div className="flex-shrink-0 flex items-center justify-between px-3 border-b border-cyber-border-subtle bg-cyber-bg-secondary/30">
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1" role="tablist">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id
             return (
               <button
                 key={tab.id}
+                role="tab"
+                aria-selected={isActive}
+                aria-controls={`panel-${tab.id}`}
+                id={`tab-${tab.id}`}
                 onClick={() => onTabChange(tab.id)}
                 className={`
                   flex items-center gap-1.5 px-3 py-2 text-xs font-mono rounded-t-md transition-all -mb-px border border-b-0
@@ -124,6 +128,7 @@ export function BottomPanel({ open, onToggle, activeTab, onTabChange }: BottomPa
           <button
             onClick={onToggle}
             className="flex items-center gap-1 px-2 py-1.5 text-xs font-mono text-cyber-text-muted hover:text-cyber-neon-pink hover:bg-cyber-neon-pink/5 rounded transition-all"
+            aria-label={t ? t('panel.closePanel') : 'Close panel'}
             title="关闭面板"
           >
             <X className="w-3.5 h-3.5" />
@@ -134,17 +139,17 @@ export function BottomPanel({ open, onToggle, activeTab, onTabChange }: BottomPa
       {/* Tab Content */}
       <div className="flex-1 min-h-0 overflow-hidden">
         {activeTab === 'console' && (
-          <div className="h-full p-3">
+          <div role="tabpanel" id="panel-console" aria-labelledby="tab-console" className="h-full p-3">
             <TerminalPanel />
           </div>
         )}
         {activeTab === 'data' && (
-          <div className="h-full p-3 overflow-y-auto">
+          <div role="tabpanel" id="panel-data" aria-labelledby="tab-data" className="h-full p-3 overflow-y-auto">
             <DataExplorer />
           </div>
         )}
         {activeTab === 'stats' && (
-          <div className="h-full p-3 overflow-y-auto">
+          <div role="tabpanel" id="panel-stats" aria-labelledby="tab-stats" className="h-full p-3 overflow-y-auto">
             <StatsOverview />
           </div>
         )}

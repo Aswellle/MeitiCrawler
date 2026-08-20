@@ -4,6 +4,8 @@
     "entries": "{{count}} 条记录",
     "active": "活跃",
     "clear": "清除",
+    "confirmClear": "确定要清除所有日志记录吗？",
+    "closePanel": "关闭面板",
     "restore": "恢复所有日志"
   },
   "banner": {

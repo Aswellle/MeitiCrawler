@@ -76,7 +76,9 @@
     "copy": "复制配置",
     "export": "导出文件",
     "savedList": "已保存的配置",
-    "noSaved": "暂无已保存的配置"
+    "noSaved": "暂无已保存的配置",
+    "confirmOverwrite": "已存在同名配置，是否覆盖？",
+    "confirmDelete": "确定要删除此配置吗？"
   },
   "warning": {
     "cookieSlider": "[提示] 小红书和抖音平台不建议使用 Cookie 登录，因为可能会触发滑块验证",
@@ -124,6 +126,7 @@
     "cookiesRequired": "请输入 Cookie 字符串"
   },
   "confirm": {
-    "stopCrawler": "确定要停止当前正在运行的爬虫吗？正在爬取的数据可能丢失。"
+    "stopCrawler": "确定要停止当前正在运行的爬虫吗？正在爬取的数据可能丢失。",
+    "resetConfig": "确定要重置所有配置项为默认值吗？当前配置将丢失。"
   }
 }

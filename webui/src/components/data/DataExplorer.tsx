@@ -39,7 +39,7 @@ export function DataExplorer() {
   const { t } = useTranslation('data')
   const [activeTab, setActiveTab] = useState<string>('all')
 
-  const { data, isLoading, refetch, isRefetching } = useQuery({
+  const { data, isLoading, refetch, isRefetching, error } = useQuery({
     queryKey: ['dataFiles'],
     queryFn: async () => {
       const { data } = await dataApi.getFiles()
@@ -131,6 +131,28 @@ export function DataExplorer() {
           <div className="text-cyber-text-muted font-mono animate-pulse">
             {t('explorer.loading')}
           </div>
+        </div>
+      ) : error ? (
+        <div className="flex-1 flex flex-col items-center justify-center text-center">
+          <div className="relative">
+            <FolderOpen className="w-16 h-16 text-cyber-neon-orange/30 mb-4" />
+            <div className="absolute inset-0 blur-xl bg-cyber-neon-orange/10" />
+          </div>
+          <h3 className="text-lg font-mono font-medium text-cyber-neon-orange mb-2">
+            {t('explorer.loadError')}
+          </h3>
+          <p className="text-sm text-cyber-text-muted max-w-md font-mono mb-4">
+            {(error as Error)?.message || t('explorer.loadErrorHint')}
+          </p>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => refetch()}
+            className="font-mono"
+          >
+            <RefreshCw className="w-4 h-4 mr-2" />
+            {t('explorer.rescan')}
+          </Button>
         </div>
       ) : files.length === 0 ? (
         <div className="flex-1 flex flex-col items-center justify-center text-center">
