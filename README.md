@@ -1,4 +1,4 @@
-# 🔥 MediaCrawler - 自媒体平台爬虫 🕷️
+# 🔥 MeitiCrawler - 自媒体平台爬虫 🕷️
 
 <div align="center">
 
@@ -95,7 +95,7 @@
 
 ```shell
 # 进入项目目录
-cd MediaCrawler
+cd MeitiCrawler
 
 # 使用 uv sync 命令来保证 python 版本和相关依赖包的一致性
 uv sync
@@ -144,7 +144,7 @@ uv run main.py --help
 <details>
 <summary>🖥️ <strong>WebUI 可视化操作界面</summary>
 
-MediaCrawler 提供了基于 Web 的可视化操作界面，无需命令行也能轻松使用爬虫功能。
+MeitiCrawler 提供了基于 Web 的可视化操作界面，无需命令行也能轻松使用爬虫功能。
 
 #### 开发调试（推荐）
 
@@ -203,7 +203,7 @@ uv run uvicorn api.main:app --port 8080 --reload
 
 ```shell
 # 进入项目根目录
-cd MediaCrawler
+cd MeitiCrawler
 
 # 创建虚拟环境
 # requirements.txt 中的库基于 python 3.11
@@ -252,7 +252,7 @@ python main.py --help
 
 ## 💾 数据保存
 
-MediaCrawler 支持多种数据存储方式，包括 CSV、JSON、JSONL、Excel、SQLite 和 MySQL 数据库。
+MeitiCrawler 支持多种数据存储方式，包括 CSV、JSON、JSONL、Excel、SQLite 和 MySQL 数据库。
 
 📖 **详细使用说明请查看：[数据存储指南](docs/data_storage_guide.md)**
 
