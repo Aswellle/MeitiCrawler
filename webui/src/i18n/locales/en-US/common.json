@@ -31,6 +31,13 @@
     "stats": "Stats",
     "openHint": "Click to open bottom panel"
   },
+  "banner": {
+    "regionLabel": "Site notice",
+    "badge": "Notice",
+    "intro": "This site is a frontend-only UI page",
+    "purpose": "No backend is deployed or connected, so data crawling is unavailable — run the full service locally to use it",
+    "dismiss": "Dismiss notice"
+  },
   "crawlCompleted": "Crawl completed",
   "crawlError": "Crawl error",
   "crawlStopped": "Crawl stopped"

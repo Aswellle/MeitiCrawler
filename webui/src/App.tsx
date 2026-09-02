@@ -3,6 +3,7 @@ import { Toaster } from 'sonner'
 import { useTranslation } from 'react-i18next'
 import { Terminal, Database, Activity } from 'lucide-react'
 import { Sidebar } from '@/components/layout/Sidebar'
+import { SiteBanner } from '@/components/layout/SiteBanner'
 import { BottomPanel } from '@/components/layout/BottomPanel'
 import { CrawlerConfigPanel } from '@/components/config/CrawlerConfigPanel'
 import { EnvironmentCheck, isEnvChecked } from '@/components/env/EnvironmentCheck'
@@ -63,8 +64,9 @@ function App() {
       {licenseAccepted && !showDisclaimer && !envChecked && (
         <EnvironmentCheck onCheckComplete={handleEnvCheckComplete} />
       )}
-
       <Sidebar onShowDisclaimer={handleShowDisclaimer} />
+
+      <SiteBanner />
 
       {/* Main Body */}
       <div className="flex-1 flex flex-col overflow-hidden min-h-0">

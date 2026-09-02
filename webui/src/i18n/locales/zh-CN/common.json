@@ -31,6 +31,13 @@
     "stats": "统计",
     "openHint": "点击打开底部面板"
   },
+  "banner": {
+    "regionLabel": "站内提醒",
+    "badge": "提示",
+    "intro": "该站点仅为前端 UI 页面",
+    "purpose": "由于未部署后端并接入后端接口，数据搜集功能不可用，请本地启动完整服务后使用",
+    "dismiss": "关闭提醒"
+  },
   "crawlCompleted": "爬虫任务已完成",
   "crawlError": "爬虫任务出错",
   "crawlStopped": "爬虫任务已停止"
