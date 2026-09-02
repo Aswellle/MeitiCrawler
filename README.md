@@ -141,8 +141,15 @@ uv run main.py --platform xhs --lt qrcode --type detail
 uv run main.py --help
 ```
 
-<details>
-<summary>🖥️ <strong>WebUI 可视化操作界面</summary>
+> ⚠️ **后端服务提醒**：以下 WebUI 可视化界面依赖后端 API 服务才能运行。首次使用前，请**先单独启动后端**：
+>
+> ```shell
+> uv run uvicorn api.main:app --port 8080 --reload
+> ```
+>
+> 后端启动成功后，再打开 WebUI 界面（`http://localhost:5173/` 或 `http://localhost:8080`）。若后端未启动，页面首次会调用 `/api/env/check` 进行环境检测并失败，此时可点击「跳过检测」临时跳过，但爬虫功能将不可用。
+
+## 🖥️ WebUI 可视化操作界面
 
 MeitiCrawler 提供了基于 Web 的可视化操作界面，无需命令行也能轻松使用爬虫功能。
 
@@ -192,10 +199,8 @@ uv run uvicorn api.main:app --port 8080 --reload
 
 <img src="docs/static/images/img_8.png" alt="WebUI 界面预览">
 
-</details>
 
-<details>
-<summary>🔗 <strong>使用 Python 原生 venv 管理环境（不推荐）</summary>
+## 🔗 使用 Python 原生 venv 管理环境（不推荐）
 
 #### 创建并激活 Python 虚拟环境
 
@@ -247,7 +252,6 @@ python main.py --platform xhs --lt qrcode --type detail
 python main.py --help
 ```
 
-</details>
 
 
 ## 💾 数据保存
