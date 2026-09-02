@@ -197,7 +197,13 @@ uv run uvicorn api.main:app --port 8080 --reload
 
 #### 界面预览
 
-<img src="docs/static/images/img_8.png" alt="WebUI 界面预览">
+| 总览面板 | 爬虫配置 |
+| --- | --- |
+| ![总览面板](docs/static/images/webui_overview.png) | ![爬虫配置](docs/static/images/webui_config.png) |
+
+| 运行日志 | <!-- 预留 --> |
+| --- | --- |
+| ![运行日志](docs/static/images/webui_logs.png) | — |
 
 
 ## 🔗 使用 Python 原生 venv 管理环境（不推荐）
