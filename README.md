@@ -18,7 +18,7 @@
 >
 > **本仓库是 [NanmiCoder/MediaCrawler](https://github.com/NanmiCoder/MediaCrawler) 的 Fork 分支。**
 >
-> 原始项目由 **[NanmiCoder（程序员阿江-Relakkes）](https://github.com/NanmiCoder)** 创建并维护，是一个高星标量的多平台自媒体数据采集开源项目。
+> 原始项目由 **[NanmiCoder（程序员阿江-Relakkes）](https://github.com/NanmiCoder)** 创建并维护，是一个多平台自媒体数据采集开源项目。
 >
 > 本 Fork 由 **Aswellle** 在原始项目基础上进行 UI/UX 改造与功能增强，旨在保留原始项目优秀架构的同时，提供更现代化的 Web 操作界面与更好的使用体验。
 >
